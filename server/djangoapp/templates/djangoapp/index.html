@@ -39,7 +39,23 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="{% url 'djangoapp:contact' %}">Contact</a>
                 </li>
+                <li>
+                </li>
             </ul>
+            <div>
+                <span>{{ user.first_name }}({{ user.username }})</span>
+                <a class="btn btn-link" href="{% url 'djangoapp:logout' %}">Logout</a>
+            </div>
+            <div>
+                <form class="form-inline" action="{% url 'djangoapp:login' %}" method="post">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Username" name="username">
+                        <input type="password" class="form-control" placeholder="Password" name="userpassword">
+                        <button class="btn btn-primary" type="submit">Login</button>
+                        <a class="btn btn-link" href="{% url 'djangoapp:registration' %}">Sign Up</a>
+                    </div>
+                </form>
+            </div>
         </div>
     </nav>
     <!--Add a dealer table here -->
