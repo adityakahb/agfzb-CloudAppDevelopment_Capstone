@@ -42,12 +42,15 @@
                 <li>
                 </li>
             </ul>
+            {% if user.is_authenticated %}
             <div>
                 <span>{{ user.first_name }}({{ user.username }})</span>
                 <a class="btn btn-link" href="{% url 'djangoapp:logout' %}">Logout</a>
             </div>
+            {% else %}
             <div>
                 <form class="form-inline" action="{% url 'djangoapp:login' %}" method="post">
+                    {% csrf_token %}
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Username" name="username">
                         <input type="password" class="form-control" placeholder="Password" name="userpassword">
@@ -56,6 +59,7 @@
                     </div>
                 </form>
             </div>
+            {% endif %}
         </div>
     </nav>
     <!--Add a dealer table here -->
