@@ -14,8 +14,8 @@ from django.utils.timezone import now
 
 
 class CarMake(models.Model):
-    name = models.CharField(null=False, max_length=48)
-    description = models.CharField(null=True, max_length=480)
+    make_name = models.CharField(null=False, max_length=48)
+    make_description = models.CharField(null=True, max_length=480)
 
     def __str__(self):
         return self.name
@@ -51,7 +51,7 @@ class CarModel(models.Model):
         null=False, max_length=15, choices=CAR_CHOICES, default=SEDAN)
 
     YEAR_CHOICES = []
-    for r in range(1969, (datetime.datetime.now().year+1)):
+    for r in range(2005, (datetime.datetime.now().year+1)):
         YEAR_CHOICES.append((r, r))
 
     model_year = models.IntegerField(
