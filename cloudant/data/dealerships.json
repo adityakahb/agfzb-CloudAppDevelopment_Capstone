@@ -1,7 +1,7 @@
 {
   "dealerships": [
     {
-      "id": 1,
+      "dealer_id": 1,
       "city": "El Paso",
       "state": "Texas",
       "st": "TX",
@@ -13,7 +13,7 @@
       "full_name": "Holdlamis Car Dealership"
     },
     {
-      "id": 2,
+      "dealer_id": 2,
       "city": "Minneapolis",
       "state": "Minnesota",
       "st": "MN",
@@ -25,7 +25,7 @@
       "full_name": "Temp Car Dealership"
     },
     {
-      "id": 3,
+      "dealer_id": 3,
       "city": "Birmingham",
       "state": "Alabama",
       "st": "AL",
@@ -37,7 +37,7 @@
       "full_name": "Sub-Ex Car Dealership"
     },
     {
-      "id": 4,
+      "dealer_id": 4,
       "city": "Dallas",
       "state": "Texas",
       "st": "TX",
@@ -49,7 +49,7 @@
       "full_name": "Solarbreeze Car Dealership"
     },
     {
-      "id": 5,
+      "dealer_id": 5,
       "city": "Baltimore",
       "state": "Maryland",
       "st": "MD",
@@ -61,7 +61,7 @@
       "full_name": "Regrant Car Dealership"
     },
     {
-      "id": 6,
+      "dealer_id": 6,
       "city": "Wilkes Barre",
       "state": "Pennsylvania",
       "st": "PA",
@@ -73,7 +73,7 @@
       "full_name": "Stronghold Car Dealership"
     },
     {
-      "id": 7,
+      "dealer_id": 7,
       "city": "Pueblo",
       "state": "Colorado",
       "st": "CO",
@@ -85,7 +85,7 @@
       "full_name": "Job Car Dealership"
     },
     {
-      "id": 8,
+      "dealer_id": 8,
       "city": "Topeka",
       "state": "Kansas",
       "st": "KS",
@@ -97,7 +97,7 @@
       "full_name": "Bytecard Car Dealership"
     },
     {
-      "id": 9,
+      "dealer_id": 9,
       "city": "Dallas",
       "state": "Texas",
       "st": "TX",
@@ -109,7 +109,7 @@
       "full_name": "Job Car Dealership"
     },
     {
-      "id": 10,
+      "dealer_id": 10,
       "city": "Washington",
       "state": "District of Columbia",
       "st": "DC",
@@ -121,7 +121,7 @@
       "full_name": "Alphazap Car Dealership"
     },
     {
-      "id": 11,
+      "dealer_id": 11,
       "city": "Carol Stream",
       "state": "Illinois",
       "st": "IL",
@@ -133,7 +133,7 @@
       "full_name": "Rank Car Dealership"
     },
     {
-      "id": 12,
+      "dealer_id": 12,
       "city": "Silver Spring",
       "state": "Maryland",
       "st": "MD",
@@ -145,7 +145,7 @@
       "full_name": "Tin Car Dealership"
     },
     {
-      "id": 13,
+      "dealer_id": 13,
       "city": "Baltimore",
       "state": "Maryland",
       "st": "MD",
@@ -157,7 +157,7 @@
       "full_name": "Y-Solowarm Car Dealership"
     },
     {
-      "id": 14,
+      "dealer_id": 14,
       "city": "San Francisco",
       "state": "California",
       "st": "CA",
@@ -169,7 +169,7 @@
       "full_name": "It Car Dealership"
     },
     {
-      "id": 15,
+      "dealer_id": 15,
       "city": "San Antonio",
       "state": "Texas",
       "st": "TX",
@@ -181,7 +181,7 @@
       "full_name": "Tempsoft Car Dealership"
     },
     {
-      "id": 16,
+      "dealer_id": 16,
       "city": "El Paso",
       "state": "Texas",
       "st": "TX",
@@ -193,7 +193,7 @@
       "full_name": "Treeflex Car Dealership"
     },
     {
-      "id": 17,
+      "dealer_id": 17,
       "city": "San Jose",
       "state": "California",
       "st": "CA",
@@ -205,7 +205,7 @@
       "full_name": "Home Ing Car Dealership"
     },
     {
-      "id": 18,
+      "dealer_id": 18,
       "city": "Whittier",
       "state": "California",
       "st": "CA",
@@ -217,7 +217,7 @@
       "full_name": "Bitchip Car Dealership"
     },
     {
-      "id": 19,
+      "dealer_id": 19,
       "city": "Hialeah",
       "state": "Florida",
       "st": "FL",
@@ -229,7 +229,7 @@
       "full_name": "Otcom Car Dealership"
     },
     {
-      "id": 20,
+      "dealer_id": 20,
       "city": "Detroit",
       "state": "Michigan",
       "st": "MI",
@@ -241,7 +241,7 @@
       "full_name": "Subin Car Dealership"
     },
     {
-      "id": 21,
+      "dealer_id": 21,
       "city": "San Francisco",
       "state": "California",
       "st": "CA",
@@ -253,7 +253,7 @@
       "full_name": "Andalax Car Dealership"
     },
     {
-      "id": 22,
+      "dealer_id": 22,
       "city": "Fort Lauderdale",
       "state": "Florida",
       "st": "FL",
@@ -265,7 +265,7 @@
       "full_name": "Y-Solowarm Car Dealership"
     },
     {
-      "id": 23,
+      "dealer_id": 23,
       "city": "Des Moines",
       "state": "Iowa",
       "st": "IA",
@@ -277,7 +277,7 @@
       "full_name": "Bitchip Car Dealership"
     },
     {
-      "id": 24,
+      "dealer_id": 24,
       "city": "Utica",
       "state": "New York",
       "st": "NY",
@@ -289,7 +289,7 @@
       "full_name": "Aerified Car Dealership"
     },
     {
-      "id": 25,
+      "dealer_id": 25,
       "city": "Washington",
       "state": "District of Columbia",
       "st": "DC",
@@ -301,7 +301,7 @@
       "full_name": "Opela Car Dealership"
     },
     {
-      "id": 26,
+      "dealer_id": 26,
       "city": "Pittsburgh",
       "state": "Pennsylvania",
       "st": "PA",
@@ -313,7 +313,7 @@
       "full_name": "Flowdesk Car Dealership"
     },
     {
-      "id": 27,
+      "dealer_id": 27,
       "city": "San Antonio",
       "state": "Texas",
       "st": "TX",
@@ -325,7 +325,7 @@
       "full_name": "Namfix Car Dealership"
     },
     {
-      "id": 28,
+      "dealer_id": 28,
       "city": "Hialeah",
       "state": "Florida",
       "st": "FL",
@@ -337,7 +337,7 @@
       "full_name": "Fixflex Car Dealership"
     },
     {
-      "id": 29,
+      "dealer_id": 29,
       "city": "San Francisco",
       "state": "California",
       "st": "CA",
@@ -349,7 +349,7 @@
       "full_name": "Fix San Car Dealership"
     },
     {
-      "id": 30,
+      "dealer_id": 30,
       "city": "Houston",
       "state": "Texas",
       "st": "TX",
@@ -361,7 +361,7 @@
       "full_name": "Opela Car Dealership"
     },
     {
-      "id": 31,
+      "dealer_id": 31,
       "city": "New York City",
       "state": "New York",
       "st": "NY",
@@ -373,7 +373,7 @@
       "full_name": "Fintone Car Dealership"
     },
     {
-      "id": 32,
+      "dealer_id": 32,
       "city": "Wilkes Barre",
       "state": "Pennsylvania",
       "st": "PA",
@@ -385,7 +385,7 @@
       "full_name": "Subin Car Dealership"
     },
     {
-      "id": 33,
+      "dealer_id": 33,
       "city": "Des Moines",
       "state": "Iowa",
       "st": "IA",
@@ -397,7 +397,7 @@
       "full_name": "Tres-Zap Car Dealership"
     },
     {
-      "id": 34,
+      "dealer_id": 34,
       "city": "Silver Spring",
       "state": "Maryland",
       "st": "MD",
@@ -409,7 +409,7 @@
       "full_name": "Gembucket Car Dealership"
     },
     {
-      "id": 35,
+      "dealer_id": 35,
       "city": "Seattle",
       "state": "Washington",
       "st": "WA",
@@ -421,7 +421,7 @@
       "full_name": "Treeflex Car Dealership"
     },
     {
-      "id": 36,
+      "dealer_id": 36,
       "city": "Vienna",
       "state": "Virginia",
       "st": "VA",
@@ -433,7 +433,7 @@
       "full_name": "Latlux Car Dealership"
     },
     {
-      "id": 37,
+      "dealer_id": 37,
       "city": "Detroit",
       "state": "Michigan",
       "st": "MI",
@@ -445,7 +445,7 @@
       "full_name": "Ventosanzap Car Dealership"
     },
     {
-      "id": 38,
+      "dealer_id": 38,
       "city": "Dallas",
       "state": "Texas",
       "st": "TX",
@@ -457,7 +457,7 @@
       "full_name": "Zamit Car Dealership"
     },
     {
-      "id": 39,
+      "dealer_id": 39,
       "city": "Fresno",
       "state": "California",
       "st": "CA",
@@ -469,7 +469,7 @@
       "full_name": "Stronghold Car Dealership"
     },
     {
-      "id": 40,
+      "dealer_id": 40,
       "city": "Merrifield",
       "state": "Virginia",
       "st": "VA",
@@ -481,7 +481,7 @@
       "full_name": "Greenlam Car Dealership"
     },
     {
-      "id": 41,
+      "dealer_id": 41,
       "city": "Baltimore",
       "state": "Maryland",
       "st": "MD",
@@ -493,7 +493,7 @@
       "full_name": "Tres-Zap Car Dealership"
     },
     {
-      "id": 42,
+      "dealer_id": 42,
       "city": "Jersey City",
       "state": "New Jersey",
       "st": "NJ",
@@ -505,7 +505,7 @@
       "full_name": "Konklab Car Dealership"
     },
     {
-      "id": 43,
+      "dealer_id": 43,
       "city": "Atlanta",
       "state": "Georgia",
       "st": "GA",
@@ -517,7 +517,7 @@
       "full_name": "Opela Car Dealership"
     },
     {
-      "id": 44,
+      "dealer_id": 44,
       "city": "Roanoke",
       "state": "Virginia",
       "st": "VA",
@@ -529,7 +529,7 @@
       "full_name": "Veribet Car Dealership"
     },
     {
-      "id": 45,
+      "dealer_id": 45,
       "city": "Norfolk",
       "state": "Virginia",
       "st": "VA",
@@ -541,7 +541,7 @@
       "full_name": "Konklux Car Dealership"
     },
     {
-      "id": 46,
+      "dealer_id": 46,
       "city": "New Orleans",
       "state": "Louisiana",
       "st": "LA",
@@ -553,7 +553,7 @@
       "full_name": "Regrant Car Dealership"
     },
     {
-      "id": 47,
+      "dealer_id": 47,
       "city": "Stamford",
       "state": "Connecticut",
       "st": "CT",
@@ -565,7 +565,7 @@
       "full_name": "Prodder Car Dealership"
     },
     {
-      "id": 48,
+      "dealer_id": 48,
       "city": "Tucson",
       "state": "Arizona",
       "st": "AZ",
@@ -577,7 +577,7 @@
       "full_name": "It Car Dealership"
     },
     {
-      "id": 49,
+      "dealer_id": 49,
       "city": "Athens",
       "state": "Georgia",
       "st": "GA",
@@ -589,7 +589,7 @@
       "full_name": "Veribet Car Dealership"
     },
     {
-      "id": 50,
+      "dealer_id": 50,
       "city": "Atlanta",
       "state": "Georgia",
       "st": "GA",
