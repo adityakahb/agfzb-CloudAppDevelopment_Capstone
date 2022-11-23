@@ -1,6 +1,6 @@
 import requests
 import json
-from .models import CarDealer
+from .models import CarDealer, DealerReview
 from requests.auth import HTTPBasicAuth
 
 
@@ -114,22 +114,16 @@ def get_dealer_reviews_from_cf(url, dealerId):
             # Get the row list in JSON as dealers
 
             reviews = json_result["rows"]["docs"]
-
-            # {'bookmark': 'g1AAAABweJzLYWBgYMpgSmHgKy5JLCrJTq2MT8lPzkzJBYorpBoaGBunmJqlmlomppgnmSSbm5qkJSebmVsYmxmZmhuD9HHA9BGlIwsAkesd0Q', 'docs': [
-            #     {'_id': 'e1033d56e59ad7b4c754fcc678362573', '_rev': '1-352b6cf13d35c1097dd34f6857255048',
-            #       'dealership': 46, 'name': 'Kissee Noirel', 'purchase': False,
-            #       'review': 'Diverse client-server success', 'review_id': 5}], 'warning': 'No matching index found, create an index to optimize query time.'}
-
             # For each dealer object
             for review in reviews:
                 # Get its content in `doc` object
                 review_doc = review["doc"]
                 # Create a CarDealer object with values in `doc` object
-                review_obj = {}
-                # review_obj = CarDealer(address=dealer_doc["address"], city=dealer_doc["city"], full_name=dealer_doc["full_name"],
-                #                        dealer_id=dealer_doc["dealer_id"], lat=dealer_doc["lat"], long=dealer_doc["long"],
-                #                        short_name=dealer_doc["short_name"],
-                #                        st=dealer_doc["st"], zip=dealer_doc["zip"])
+                review_obj = DealerReview(car_make=review_doc["car_make"], car_model=review_doc["car_model"],
+                                          car_year=review_doc["car_year"], dealership=review_doc["dealership"], name=review_doc["name"],
+                                          purchase=review_doc["purchase"], purchase_date=review_doc["purchase_date"],
+                                          review=review_doc["review"], review_id=review_doc["review_id"])
+                review_obj.sentiment = "Neutral"
                 results.append(review_obj)
     except:
         print("Error")
