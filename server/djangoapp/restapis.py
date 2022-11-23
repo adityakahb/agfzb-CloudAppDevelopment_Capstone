@@ -2,19 +2,29 @@ import requests
 import json
 from .models import CarDealer, DealerReview
 from requests.auth import HTTPBasicAuth
-
+from ibm_cloud_sdk_core import ApiException
 
 # Create a `get_request` to make HTTP GET requests
 # e.g., response = requests.get(url, params=params, headers={'Content-Type': 'application/json'},
 #                                     auth=HTTPBasicAuth('apikey', api_key))
-def get_request(url, **kwargs):
-    try:
-        # Call get method of requests library with URL and parameters
-        response = requests.get(url, headers={'Content-Type': 'application/json'},
-                                params=kwargs)
-    except:
-        # If any error occurs
-        print("Network exception occurred")
+
+
+def get_request(url, api_key=False, **kwargs):
+    if api_key:
+        # Basic authentication GET
+        try:
+            response = requests.get(url, headers={'Content-Type': 'application/json'},
+                                    params=kwargs, auth=HTTPBasicAuth('apikey', api_key))
+        except:
+            print("Network exception occurred while requesting " + url)
+    else:
+        try:
+            # Call get method of requests library with URL and parameters
+            response = requests.get(url, headers={'Content-Type': 'application/json'},
+                                    params=kwargs)
+        except:
+            # If any error occurs
+            print("Network exception occurred while requesting " + url)
     status_code = response.status_code
     print("With status {} ".format(status_code))
     json_data = json.loads(response.text)
@@ -112,21 +122,38 @@ def get_dealer_reviews_from_cf(url, dealerId):
         json_result = get_request(url, dealerId=dealerId)
         if json_result:
             # Get the row list in JSON as dealers
-
-            reviews = json_result["rows"]["docs"]
+            reviews = json_result["docs"]
             # For each dealer object
-            for review in reviews:
-                # Get its content in `doc` object
-                review_doc = review["doc"]
+            for review_doc in reviews:
                 # Create a CarDealer object with values in `doc` object
-                review_obj = DealerReview(car_make=review_doc["car_make"], car_model=review_doc["car_model"],
-                                          car_year=review_doc["car_year"], dealership=review_doc["dealership"], name=review_doc["name"],
-                                          purchase=review_doc["purchase"], purchase_date=review_doc["purchase_date"],
-                                          review=review_doc["review"], review_id=review_doc["review_id"])
-                review_obj.sentiment = "Neutral"
+                review_obj = DealerReview()
+                if "car_make" in review_doc:
+                    review_obj.car_make = review_doc["car_make"]
+                if "car_model" in review_doc:
+                    review_obj.car_model = review_doc["car_model"]
+                if "car_year" in review_doc:
+                    review_obj.car_year = review_doc["car_year"]
+                if "dealership" in review_doc:
+                    review_obj.dealership = review_doc["dealership"]
+                if "name" in review_doc:
+                    review_obj.name = review_doc["name"]
+                if "purchase" in review_doc:
+                    review_obj.purchase = review_doc["purchase"]
+                if "purchase_date" in review_doc:
+                    review_obj.purchase_date = review_doc["purchase_date"]
+                if "review" in review_doc:
+                    review_obj.review = review_doc["review"]
+                    review_obj.sentiment = analyze_review_sentiments(
+                        review_doc["review"])
+                if "review_id" in review_doc:
+                    review_obj.review_id = review_doc["review_id"]
                 results.append(review_obj)
-    except:
-        print("Error")
+    except ApiException as ae:
+        errorBody = {"error": ae.message}
+        if ("reason" in ae.http_response.json()):
+            errorBody["reason"] = ae.http_response.json()["reason"]
+    except Exception as inst:
+        print(inst)
 
     return {"body": results}
 
@@ -134,3 +161,7 @@ def get_dealer_reviews_from_cf(url, dealerId):
 # def analyze_review_sentiments(text):
 # - Call get_request() with specified arguments
 # - Get the returned sentiment label such as Positive or Negative
+
+
+def analyze_review_sentiments(review_text):
+    return "Neutral"
