@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render, redirect
-# from .models import related models
+from .models import CarModel, CarMake, CarDealer, DealerReview
 from .restapis import get_dealers_from_cf, get_dealer_by_id, get_dealer_reviews_from_cf
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
@@ -88,10 +88,7 @@ def get_dealerships(request):
         url = "https://eu-gb.functions.appdomain.cloud/api/v1/web/8ce6fac2-d8dd-421f-b11e-f066c1336a48/dealership-package/get-dealership"
         # Get dealers from the URL
         dealerships = get_dealers_from_cf(url)
-        # Concat all dealer's short name
-        dealer_names = ' '.join([dealer.short_name for dealer in dealerships])
-        # Return a list of dealer short name
-        return HttpResponse(dealer_names)
+        return render(request, 'djangoapp/index.html', {"dealerships": dealerships})
 
 
 # Create a `get_dealer_details` view to render the reviews of a dealer
@@ -108,6 +105,22 @@ def get_dealer_details(request, dealerId):
         print(context)
 
         return render(request, 'djangoapp/dealer_details.html', context)
+
+
 # Create a `add_review` view to submit a review
-# def add_review(request, dealer_id):
-# ...
+def add_review(request, dealerId):
+    # User must be logged in before posting a review
+    if request.user.is_authenticated:
+        # GET request renders the page with the form for filling out a review
+        if request.method == "GET":
+            url = f"https://5b93346d.us-south.apigw.appdomain.cloud/dealerships/dealer-get?dealerId={dealerId}"
+            # Get dealer details from the API
+            context = {
+                "cars": CarModel.objects.all(),
+                "dealer": get_dealer_by_id(url, dealerId=dealerId),
+            }
+            return render(request, 'djangoapp/add_review.html', context)
+    else:
+        # If user isn't logged in, redirect to login page
+        print("User must be authenticated before posting a review. Please log in.")
+        return redirect("/djangoapp/login")

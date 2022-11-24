@@ -28,7 +28,6 @@ def get_request(url, **kwargs):
 # e.g., response = requests.post(url, params=kwargs, json=payload)
 
 
-# Create a get_dealers_from_cf method to get dealers from a cloud function
 def get_dealer_by_id(url, dealerId):
     results = []
     try:
@@ -45,7 +44,7 @@ def get_dealer_by_id(url, dealerId):
     except:
         print("Error")
 
-    return {"body": results}
+    return results
 
 
 def get_dealers_by_state(url, state):
@@ -64,7 +63,9 @@ def get_dealers_by_state(url, state):
     except:
         print("Error")
 
-    return {"body": results}
+    return results
+
+# Create a get_dealers_from_cf method to get dealers from a cloud function
 
 
 def get_dealers_from_cf(url):
@@ -75,15 +76,33 @@ def get_dealers_from_cf(url):
             dealers = json_result["rows"]
             for dealer in dealers:
                 dealer_doc = dealer["doc"]
-                dealer_obj = CarDealer(address=dealer_doc["address"], city=dealer_doc["city"], full_name=dealer_doc["full_name"],
-                                       dealer_id=dealer_doc["dealer_id"], lat=dealer_doc["lat"], long=dealer_doc["long"],
-                                       short_name=dealer_doc["short_name"],
-                                       st=dealer_doc["st"], zip=dealer_doc["zip"])
-                results.append(dealer_obj)
-    except:
-        print("Error")
+                dealer_obj = CarDealer()
+                if "address" in dealer_doc:
+                    dealer_obj.address = dealer_doc["address"]
+                if "city" in dealer_doc:
+                    dealer_obj.city = dealer_doc["city"]
+                if "full_name" in dealer_doc:
+                    dealer_obj.full_name = dealer_doc["full_name"]
+                if "dealer_id" in dealer_doc:
+                    dealer_obj.dealer_id = dealer_doc["dealer_id"]
+                if "lat" in dealer_doc:
+                    dealer_obj.lat = dealer_doc["lat"]
+                if "long" in dealer_doc:
+                    dealer_obj.long = dealer_doc["long"]
+                if "short_name" in dealer_doc:
+                    dealer_obj.short_name = dealer_doc["short_name"]
+                if "state" in dealer_doc:
+                    dealer_obj.state = dealer_doc["state"]
+                if "st" in dealer_doc:
+                    dealer_obj.st = dealer_doc["st"]
+                if "zip" in dealer_doc:
+                    dealer_obj.zip = dealer_doc["zip"]
 
-    return {"body": results}
+                results.append(dealer_obj)
+    except Exception as inst:
+        print("Error", inst)
+
+    return results
 
 
 # Create a get_dealer_reviews_from_cf method to get reviews by dealer id from a cloud function
@@ -125,7 +144,7 @@ def get_dealer_reviews_from_cf(url, dealerId):
     except Exception as inst:
         print(inst)
 
-    return {"body": results}
+    return results
 
 
 # Create an `analyze_review_sentiments` method to call Watson NLU and analyze text
