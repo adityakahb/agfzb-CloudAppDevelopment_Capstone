@@ -1,14 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import render, redirect
 from .models import CarModel
-from .restapis import get_dealers_from_cf, get_dealer_by_id, get_dealer_reviews_from_cf
+from .restapis import get_dealers_from_cf, get_dealer_by_id, get_dealer_reviews_from_cf, post_request
 from django.contrib.auth import login, logout, authenticate
-from django.contrib import messages
 from datetime import datetime
 import logging
-import json
+import random
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
@@ -118,6 +116,35 @@ def add_review(request, dealerId):
             }
             return render(request, 'djangoapp/add_review.html', {"context": context})
         if request.method == "POST":
-            pass
+            form = request.POST
+            review = dict()
+            review["review_id"] = random.randint(1000, 9999)
+            review["name"] = request.user.first_name + \
+                " " + request.user.last_name
+            review["dealership"] = dealerId
+            review["review"] = form["reviewtext"]
+            if "iscarpurchased" in form:
+                review["purchase"] = True
+                review["purchase_date"] = datetime.strptime(
+                    form.get("purchasedate"), "%m/%d/%Y").isoformat()
+            else:
+                review["purchase"] = False
+                review["purchase_date"] = None
+            car = CarModel.objects.get(pk=form["car"])
+            review["car_make"] = car.model_make.make_name
+            review["car_model"] = car.model_name
+            review["car_year"] = car.model_year
+
+            # API Cloud Function route
+            url = "https://eu-gb.functions.appdomain.cloud/api/v1/web/8ce6fac2-d8dd-421f-b11e-f066c1336a48/dealership-package/post-review"
+            # Create a JSON payload that contains the review data
+            json_payload = {"review": review}
+            # Performing a POST request with the review
+            result = post_request(url, json_payload, dealerId=dealerId)
+            if int(result.status_code) == 200:
+                print("Review posted successfully.")
+
+            # After posting the review the user is redirected back to the dealer details page
+            return redirect("djangoapp:dealer_details", dealerId)
     else:
         return redirect("/djangoapp/login")

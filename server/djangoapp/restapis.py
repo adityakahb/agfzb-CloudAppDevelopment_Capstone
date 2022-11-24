@@ -20,12 +20,22 @@ def get_request(url, **kwargs):
                                 params=kwargs)
     except:
         # If any error occurs
-        print("Network exception occurred while requesting " + url)
+        print("Network exception occurred while requesting GET:" + url)
     json_data = json.loads(response.text)
     return json_data
 
 # Create a `post_request` to make HTTP POST requests
 # e.g., response = requests.post(url, params=kwargs, json=payload)
+
+
+def post_request(url, json_payload, **kwargs):
+    print(f"POST to {url}")
+    try:
+        response = requests.post(url, params=kwargs, json=json_payload)
+    except:
+        print("Network exception occurred while requesting POST:" + url)
+
+    return response
 
 
 def get_dealer_by_id(url, dealerId):
