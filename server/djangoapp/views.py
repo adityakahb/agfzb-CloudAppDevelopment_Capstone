@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render, redirect
-from .models import CarModel, CarMake, CarDealer, DealerReview
+from .models import CarModel
 from .restapis import get_dealers_from_cf, get_dealer_by_id, get_dealer_reviews_from_cf
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
@@ -99,10 +99,10 @@ def get_dealer_details(request, dealerId):
     if request.method == "GET":
         url = "https://eu-gb.functions.appdomain.cloud/api/v1/web/8ce6fac2-d8dd-421f-b11e-f066c1336a48/dealership-package/get-dealership"
         urlReviews = "https://eu-gb.functions.appdomain.cloud/api/v1/web/8ce6fac2-d8dd-421f-b11e-f066c1336a48/dealership-package/get-review"
-        context["dealer_info"] = get_dealer_by_id(url, dealerId)
-        context["dealer_reviews"] = get_dealer_reviews_from_cf(
+        context["dealerInfo"] = get_dealer_by_id(url, dealerId)
+        context["dealerReviews"] = get_dealer_reviews_from_cf(
             urlReviews, dealerId)
-        print(context)
+        context["dealerId"] = dealerId
 
         return render(request, 'djangoapp/dealer_details.html', context)
 
@@ -111,16 +111,13 @@ def get_dealer_details(request, dealerId):
 def add_review(request, dealerId):
     # User must be logged in before posting a review
     if request.user.is_authenticated:
-        # GET request renders the page with the form for filling out a review
         if request.method == "GET":
-            url = f"https://5b93346d.us-south.apigw.appdomain.cloud/dealerships/dealer-get?dealerId={dealerId}"
-            # Get dealer details from the API
             context = {
                 "cars": CarModel.objects.all(),
-                "dealer": get_dealer_by_id(url, dealerId=dealerId),
+                "dealerId": dealerId,
             }
-            return render(request, 'djangoapp/add_review.html', context)
+            return render(request, 'djangoapp/add_review.html', {"context": context})
+        if request.method == "POST":
+            pass
     else:
-        # If user isn't logged in, redirect to login page
-        print("User must be authenticated before posting a review. Please log in.")
         return redirect("/djangoapp/login")
