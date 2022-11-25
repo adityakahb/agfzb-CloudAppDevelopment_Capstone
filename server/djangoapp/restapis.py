@@ -209,4 +209,4 @@ def analyze_review_sentiments(dealerreview):
         return response["sentiment"]["document"]["label"]
     except Exception as inst:
         print(inst)
-        return "NA"
+        return "Neutral"

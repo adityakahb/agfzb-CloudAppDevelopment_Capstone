@@ -12,21 +12,32 @@
 {% if dealerReviews %}
 <h2>Reviews</h2>
 <hr />
-{% for review in dealerReviews %}
-<div class="media">
-  <div class="media-body">
-    {% if review.car_make %}
-    <h5>{{ review.car_make }}, {{ review.car_model }}</h5>
-    <h5>{{ review.car_year }}</h5>
-    {% endif %}
-    <h6 class="display-1">{{ review.sentiment }}</h6>
-    <p>{{ review.review }}</p>
+<div class="container-fluid">
+  <div class="row">
+    {% for review in dealerReviews %}
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <div class="card my-2">
+        <div class="row no-gutters">
+          <div class="col-md-3">
+            <img src="{{MEDIA_URL}}/emoji/{{review.sentiment}}.png" class="w-100">
+          </div>
+          <div class="col-md-9">
+            <div class="card-body">
+              {% if review.car_make %}
+              <h5 class="card-title">{{ review.car_make }}, {{ review.car_model }}, {{ review.car_year }}</h5>
+              {% endif %}
+              <p class="card-text">{{ review.review }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
   </div>
 </div>
-<hr />
-{% endfor %}
 {% endif %}
 {% if user.is_authenticated %}
+<hr />
 <div>
   <a class="btn btn-primary" href="{% url 'djangoapp:add_review' dealerId %}">Write a review</a>
 </div>
